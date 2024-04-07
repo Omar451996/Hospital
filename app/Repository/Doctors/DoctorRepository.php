@@ -42,10 +42,13 @@ class DoctorRepository implements DoctorRepositoryInterface
             $doctors->phone = $request->phone;
             $doctors->status = 1;
             $doctors->save();
+
             // store trans
             $doctors->name = $request->name;
-            $doctors->appointments =implode(",",$request->appointments);
             $doctors->save();
+
+            // insert pivot tABLE
+            $doctors->doctorappointments()->attach($request->appointments);
 
 
             //Upload img
@@ -107,35 +110,35 @@ class DoctorRepository implements DoctorRepositoryInterface
 
     public function destroy($request)
     {
-        if($request->page_id==1){
+      if($request->page_id==1){
 
-            if($request->filename){
+       if($request->filename){
 
-                $this->Delete_attachment('upload_image','doctors/'.$request->filename,$request->id,$request->filename);
-            }
-            Doctor::destroy($request->id);
-            session()->flash('delete');
-            return redirect()->route('Doctors.index');
-        }
+         $this->Delete_attachment('upload_image','doctors/'.$request->filename,$request->id,$request->filename);
+       }
+          Doctor::destroy($request->id);
+          session()->flash('delete');
+          return redirect()->route('Doctors.index');
+      }
 
 
-        //---------------------------------------------------------------
+      //---------------------------------------------------------------
 
-        else{
+      else{
 
-            // delete selector doctor
-            $delete_select_id = explode(",", $request->delete_select_id);
-            foreach ($delete_select_id as $ids_doctors){
-                $doctor = Doctor::findorfail($ids_doctors);
-                if($doctor->image){
-                    $this->Delete_attachment('upload_image','doctors/'.$doctor->image->filename,$ids_doctors,$doctor->image->filename);
-                }
-            }
+          // delete selector doctor
+          $delete_select_id = explode(",", $request->delete_select_id);
+          foreach ($delete_select_id as $ids_doctors){
+              $doctor = Doctor::findorfail($ids_doctors);
+              if($doctor->image){
+                  $this->Delete_attachment('upload_image','doctors/'.$doctor->image->filename,$ids_doctors,$doctor->image->filename);
+              }
+          }
 
-            Doctor::destroy($delete_select_id);
-            session()->flash('delete');
-            return redirect()->route('Doctors.index');
-        }
+          Doctor::destroy($delete_select_id);
+          session()->flash('delete');
+          return redirect()->route('Doctors.index');
+      }
 
     }
 

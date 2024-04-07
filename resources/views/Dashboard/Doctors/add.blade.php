@@ -13,9 +13,9 @@
     <!-- Internal Spectrum-colorpicker css -->
     <link href="{{URL::asset('Dashboard/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 
-    @section('title')
-        {{trans('doctors.add_doctor')}}
-    @stop
+@section('title')
+    {{trans('doctors.add_doctor')}}
+@stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->

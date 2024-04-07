@@ -19,6 +19,9 @@ interface DoctorRepositoryInterface
     // destroy Doctor
     public function destroy($request);
 
+    // destroy Doctor
+    public function edit($id);
+
     // update_password
     public function update_password($request);
 

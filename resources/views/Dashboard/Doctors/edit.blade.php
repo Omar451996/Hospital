@@ -15,9 +15,9 @@
     <!-- Internal Spectrum-colorpicker css -->
     <link href="{{URL::asset('Dashboard/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 
-    @section('title')
-        {{trans('doctors.add_doctor')}}
-    @stop
+@section('title')
+    {{trans('doctors.add_doctor')}}
+@stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -26,7 +26,7 @@
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto"> {{trans('main-sidebar_trans.doctors')}}</h4><span
                     class="text-muted mt-1 tx-13 mr-2 mb-0">/
-               {{trans('doctors.edit_doctor')}}</span>
+               {{trans('doctors.add_doctor')}}</span>
             </div>
         </div>
     </div>
@@ -117,13 +117,14 @@
 
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                     <select multiple="multiple" class="testselect2" name="appointments[]">
-                                        @foreach($doctor->doctorappointments as $appointmentDOC)
-                                            <option value="{{$appointmentDOC->id}}" selected>{{$appointmentDOC->name}}</option>
-                                        @endforeach
-
                                         @foreach($appointments as $appointment)
-                                            <option
-                                                value="{{$appointment->id}}">{{$appointment->name}}</option>
+                                            @php $check = []; @endphp
+                                            @foreach ($doctor->doctorappointments as $key => $appointmentDOC)
+                                                @php
+                                                    $check[] = $appointmentDOC->id;
+                                                @endphp
+                                            @endforeach
+                                            <option value="{{$appointment->id}}" {{ in_array($appointment->id, $check) ? 'selected' : '' }}>{{$appointment->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -1,7 +1,14 @@
 <?php
+
+use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
+use App\Http\Controllers\Dashboard\InsuranceController;
+use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\PaymentAccountController;
+use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\SingleServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,21 +54,74 @@ Route::group(
 
     Route::middleware(['auth:admin'])->group(function () {
 
-        //############################# sections route ##########################################
+    //############################# sections route ##########################################
 
         Route::resource('Sections', SectionController::class);
 
-        //############################# end sections route ######################################
+    //############################# end sections route ######################################
 
 
-        //############################# Doctors route ##########################################
+     //############################# Doctors route ##########################################
 
         Route::resource('Doctors', DoctorController::class);
         Route::post('update_password', [DoctorController::class, 'update_password'])->name('update_password');
         Route::post('update_status', [DoctorController::class, 'update_status'])->name('update_status');
 
-
         //############################# end Doctors route ######################################
+
+
+        //############################# sections route ##########################################
+
+        Route::resource('Service', SingleServiceController::class);
+
+        //############################# end sections route ######################################
+
+        //############################# GroupServices route ##########################################
+
+        Route::view('Add_GroupServices','livewire.GroupServices.include_create')->name('Add_GroupServices');
+
+        //############################# end GroupServices route ######################################
+
+        //############################# insurance route ##########################################
+
+        Route::resource('insurance', InsuranceController::class);
+
+        //############################# end insurance route ######################################
+
+        //############################# Ambulance route ##########################################
+
+        Route::resource('Ambulance', AmbulanceController::class);
+
+        //############################# end Ambulance route ######################################
+
+
+        //############################# Patients route ##########################################
+
+        Route::resource('Patients', PatientController::class);
+
+        //############################# end Patients route ######################################
+
+
+        //############################# single_invoices route ##########################################
+
+        Route::view('single_invoices','livewire.single_invoices.index')->name('single_invoices');
+
+        Route::view('Print_single_invoices','livewire.single_invoices.print')->name('Print_single_invoices');
+
+        //############################# end single_invoices route ######################################
+
+        //############################# Receipt route ##########################################
+
+        Route::resource('Receipt', ReceiptAccountController::class);
+
+        //############################# end Receipt route ######################################
+
+        //############################# Payment route ##########################################
+
+        Route::resource('Payment', PaymentAccountController::class);
+
+        //############################# end Payment route ######################################
+
 
     });
 
@@ -70,3 +130,8 @@ Route::group(
 
 
 });
+
+
+
+
+

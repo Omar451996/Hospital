@@ -10,8 +10,8 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function index()
     {
-        $sections = Section::all();
-        return view('Dashboard.Sections.index',compact('sections'));
+      $sections = Section::all();
+      return view('Dashboard.Sections.index',compact('sections'));
     }
 
     public function store($request)

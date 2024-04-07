@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
@@ -17,13 +18,13 @@ class SectionController extends Controller
 
     public function index()
     {
-        return  $this->Sections->index();
+      return  $this->Sections->index();
 
     }
 
     public function show($id)
     {
-        return $this->Sections->show($id);
+       return $this->Sections->show($id);
     }
 
 
