@@ -23,6 +23,8 @@ class RouteServiceProvider extends ServiceProvider
 
     public const DOCTOR = '/dashboard/doctor';
 
+    public const RayEmployee = '/dashboard/ray_employee';
+
     /**
      * The controller namespace for the application.
      *

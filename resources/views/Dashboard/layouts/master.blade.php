@@ -28,15 +28,5 @@
 				@include('Dashboard.layouts.models')
             	@include('Dashboard.layouts.footer')
 				@include('Dashboard.layouts.footer-scripts')
-
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('46eda0fa39fd06ae8c87', {
-            cluster: 'mt1'
-        });
-    </script>
-
 	</body>
 </html>
