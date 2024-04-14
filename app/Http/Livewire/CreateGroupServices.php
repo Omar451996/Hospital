@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire;
 
 use App\Models\Group;
@@ -20,7 +19,7 @@ class CreateGroupServices extends Component
     public $ServiceUpdated = false;
     public $show_table = true;
     public $updateMode = false;
-    public $group_id;
+    public $group_id, $catchError;
 
     public function mount()
     {

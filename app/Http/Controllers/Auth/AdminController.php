@@ -11,18 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(AdminLoginRequest $request)
     {
         if($request->authenticate()){
@@ -32,24 +20,6 @@ class AdminController extends Controller
 
         return redirect()->back()->withErrors(['name' => (trans('Dashboard/auth.failed'))]);
 
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
     }
 
 
